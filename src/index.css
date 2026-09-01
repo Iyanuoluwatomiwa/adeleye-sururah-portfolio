@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+@theme {
+  /* ================================
+     CORE COLOUR SYSTEM
+  ================================= */
+
+  --color-bg-main: #0B0D10;
+  --color-bg-secondary: #111419;
+  --color-bg-surface: #171A20;
+  --color-bg-border: #242932;
+
+  --color-text-primary: #F5F5F5;
+  --color-text-secondary: #A7ADB7;
+  --color-text-muted: #6C7582;
+
+  --color-accent: #00A896;
+  --color-accent-hover: #02C39A;
+
+  /* Typography */
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+/* =========================================
+   BASE
+========================================= */
+
+html {
+  scroll-behavior: smooth;
+  background: #0B0D10;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #0B0D10;
+  color: #F5F5F5;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* =========================================
+   SELECTION
+========================================= */
+
+::selection {
+  background: #00A896;
+  color: #0B0D10;
+}
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B0D10;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #242932;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00A896;
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+:focus-visible {
+  outline: 2px solid #00A896;
+  outline-offset: 4px;
+}
+
+/* =========================================
+   REVEAL ANIMATION
+========================================= */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.65;
+    transform: scale(1.05);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease both;
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 4s ease-in-out infinite;
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
