@@ -1,9 +1,4 @@
-import {
-  BriefcaseBusiness,
-  MapPin,
-  CalendarDays,
-  ArrowUpRight,
-} from "lucide-react";
+import { BriefcaseBusiness, MapPin, CalendarDays } from "lucide-react";
 
 import { profileData } from "../../assets/data";
 
@@ -389,17 +384,7 @@ export function Experience() {
                       Professional Experience
                     </span>
 
-                    <ArrowUpRight
-                      size={16}
-                      className="
-                        text-text-muted
-                        transition-all
-                        duration-500
-                        group-hover:-translate-y-1
-                        group-hover:translate-x-1
-                        group-hover:text-accent
-                      "
-                    />
+                    
                   </div>
                 </div>
               </article>

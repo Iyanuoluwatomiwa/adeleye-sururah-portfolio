@@ -1,9 +1,4 @@
-import {
-  GraduationCap,
-  MapPin,
-  CalendarDays,
-  ArrowUpRight,
-} from "lucide-react";
+import { GraduationCap, MapPin, CalendarDays } from "lucide-react";
 
 import { profileData } from "../../assets/data";
 
@@ -21,10 +16,6 @@ export function Education() {
       "
     >
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-        {/* =====================================
-            HEADER
-        ====================================== */}
-
         <div
           className="
             grid
@@ -105,10 +96,6 @@ export function Education() {
           </div>
         </div>
 
-        {/* =====================================
-            EDUCATION LIST
-        ====================================== */}
-
         <div className="mt-16 lg:mt-24">
           {education.map((item, index) => (
             <article
@@ -133,7 +120,6 @@ export function Education() {
                   lg:gap-10
                 "
               >
-                {/* Number / Icon */}
                 <div
                   className="
                     flex
@@ -307,23 +293,6 @@ export function Education() {
                   transition-all
                   duration-500
                   group-hover:w-full
-                "
-              />
-
-              <ArrowUpRight
-                size={17}
-                className="
-                  absolute
-                  bottom-10
-                  right-0
-                  hidden
-                  text-text-muted
-                  transition-all
-                  duration-500
-                  group-hover:-translate-y-1
-                  group-hover:translate-x-1
-                  group-hover:text-accent
-                  lg:block
                 "
               />
             </article>

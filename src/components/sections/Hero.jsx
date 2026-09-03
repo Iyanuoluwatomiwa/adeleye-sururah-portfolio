@@ -7,10 +7,10 @@ export function Hero() {
 
   return (
     <section
-      id="hero"
+      id="home"
       className="
       relative isolate
-      min-h-[100svh]
+      min-h-svh
       overflow-hidden
       border-b border-bg-border
       bg-bg-main
@@ -18,19 +18,15 @@ export function Hero() {
       lg:pt-24
     "
     >
-      {/* =====================================
-          ATMOSPHERIC BACKGROUND
-      ====================================== */}
-
       <div
         aria-hidden="true"
         className="
           pointer-events-none absolute
           left-[55%] top-[35%]
-          h-[520px] w-[520px]
+          h-130 w-130
           -translate-x-1/2 -translate-y-1/2
           rounded-full
-          bg-accent/[0.045]
+          bg-accent/4.5
           blur-[110px]
         "
       />
@@ -42,7 +38,7 @@ export function Hero() {
           -right-40 top-20
           h-80 w-80
           rounded-full
-          bg-accent/[0.025]
+          bg-accent/2.5
           blur-[90px]
         "
       />
@@ -53,14 +49,10 @@ export function Hero() {
         className="
           pointer-events-none absolute inset-0
           opacity-[0.035]
-          [background-image:linear-gradient(to_right,#F5F5F5_1px,transparent_1px),linear-gradient(to_bottom,#F5F5F5_1px,transparent_1px)]
-          [background-size:72px_72px]
+          bg-[linear-gradient(to_right,#F5F5F5_1px,transparent_1px),linear-gradient(to_bottom,#F5F5F5_1px,transparent_1px)]
+          bg-size-[72px_72px]
         "
       />
-
-      {/* =====================================
-          CONTENT
-      ====================================== */}
 
       <div
         className="
@@ -82,10 +74,6 @@ export function Hero() {
             lg:gap-8
           "
         >
-          {/* =================================
-              LEFT — PERSONAL INTRO
-          ================================= */}
-
           <div className="relative z-10">
             {/* Eyebrow */}
             <div
@@ -284,11 +272,11 @@ export function Hero() {
               relative
               mx-auto
               hidden
-              h-[460px]
+              h-115
               w-full
-              max-w-[500px]
-              xl:h-[520px]
-              xl:max-w-[520px]
+              max-w-125
+              xl:h-130
+              xl:max-w-130
               lg:block
             "
           >
@@ -297,8 +285,8 @@ export function Hero() {
               className="
                 absolute
                 left-1/2 top-1/2
-                h-[360px] w-[360px]
-                xl:h-[410px] xl:w-[410px]
+                h-90 w-90
+                xl:h-102.5 xl:w-102.5
                 -translate-x-1/2
                 -translate-y-1/2
                 rounded-full
@@ -306,13 +294,12 @@ export function Hero() {
               "
             />
 
-            {/* Dashed orbit */}
             <div
               className="
                 absolute
                 left-1/2 top-1/2
-                h-[295px] w-[295px]
-                xl:h-[340px] xl:w-[340px]
+                h-73.75 w-73.75
+                xl:h-85 xl:w-85
                 -translate-x-1/2
                 -translate-y-1/2
                 rounded-full
@@ -329,8 +316,8 @@ export function Hero() {
                 absolute
                 left-1/2 top-1/2
                 flex
-                h-[225px] w-[225px]
-                xl:h-[270px] xl:w-[270px]
+                h-56.25 w-56.25
+                xl:h-67.5 xl:w-67.5
                 -translate-x-1/2
                 -translate-y-1/2
                 items-center
@@ -362,13 +349,12 @@ export function Hero() {
                     font-semibold
                     leading-none
                     tracking-[-0.12em]
-                    text-text-primary/[0.08]
+                    text-text-primary/8
                   "
                 >
                   ASA
                 </span>
 
-                {/* Crescent */}
                 <span
                   className="
                     absolute
@@ -397,10 +383,6 @@ export function Hero() {
                 />
               </div>
             </div>
-
-            {/* =================================
-                TOP LABEL
-            ================================= */}
 
             <div
               className="
@@ -437,10 +419,6 @@ export function Hero() {
                 </p>
               </div>
             </div>
-
-            {/* =================================
-                LOWER LABEL
-            ================================= */}
 
             <div
               className="
@@ -481,7 +459,7 @@ export function Hero() {
               </p>
             </div>
 
-            {/* Decorative coordinates */}
+            
             <div className="absolute bottom-4 right-5">
               <p className="font-heading text-[10px] tracking-[0.2em] text-text-muted">
                 09° 05′ N
@@ -496,8 +474,8 @@ export function Hero() {
             <span
               className="
                 absolute
-                left-[70px]
-                top-[110px]
+                left-17.5
+                top-27.5
                 h-2
                 w-2
                 rounded-full
@@ -509,7 +487,7 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Bottom edge metadata */}
+      
       <div
         className="
           absolute

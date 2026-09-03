@@ -1,75 +1,274 @@
-import React, { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ChevronDown, Menu } from "lucide-react";
 import { profileData } from "../../assets/data";
-import { Button } from "../ui/Button";
+import { BrandLogo } from "./BrandLogo";
 
 export const Navbar = ({ onOpenMobile }) => {
   const [scrolled, setScrolled] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
+
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 24);
     };
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
-  const navLinks = [
-    { name: "Home", href: "#hero" },
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setMoreOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const primaryLinks = [
+    { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
     { name: "What I Do", href: "#what-i-do" },
     { name: "Experience", href: "#experience" },
+  ];
+
+  const moreLinks = [
     { name: "Education", href: "#education" },
     { name: "Skills", href: "#skills" },
     { name: "Certifications", href: "#certifications" },
     { name: "Contact", href: "#contact" },
   ];
 
+  const handleNavClick = () => {
+    setMoreOpen(false);
+  };
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${scrolled ? "bg-bg-main/85 backdrop-blur-md border-b border-bg-border py-4" : "bg-transparent py-6"}`}
+      className={`
+        fixed
+        inset-x-0
+        top-0
+        z-50
+        transition-all
+        duration-500
+        ${
+          scrolled
+            ? "border-b border-bg-border bg-bg-main/85 py-4 backdrop-blur-xl"
+            : "bg-transparent py-6"
+        }
+      `}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-        {/* Brand Logo */}
+      <div
+        className="
+          mx-auto
+          flex
+          max-w-7xl
+          items-center
+          justify-between
+          px-6
+          lg:px-8
+        "
+      >
         <a
-          href="#hero"
-          className="font-heading font-bold text-xl text-text-primary tracking-wider flex items-center gap-2 group"
+          href="#home"
+          aria-label={`${profileData.name} — Home`}
+          className="group flex items-center"
         >
-          <span className="w-9 h-9 rounded bg-bg-surface border border-bg-border flex items-center justify-center text-accent text-sm font-semibold group-hover:border-accent transition-colors">
-            {profileData.monogram}
-          </span>
-          <span className="hidden sm:inline font-medium text-sm text-text-secondary group-hover:text-text-primary transition-colors">
-            Adeleye S.A.
-          </span>
+          <BrandLogo size="sm" />
         </a>
 
-        {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center space-x-8">
-          {navLinks.map((link) => (
+        <nav
+          aria-label="Primary navigation"
+          className="
+            hidden
+            items-center
+            gap-1
+            lg:flex
+          "
+        >
+          {primaryLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-sm text-text-secondary hover:text-accent transition-colors duration-200"
+              onClick={handleNavClick}
+              className="
+                rounded-full
+                px-4
+                py-2
+                text-[12px]
+                font-medium
+                text-text-secondary
+                transition-all
+                duration-300
+                hover:bg-bg-surface
+                hover:text-text-primary
+              "
             >
               {link.name}
             </a>
           ))}
+
+          {/* More dropdown */}
+          <div ref={dropdownRef} className="relative">
+            <button
+              type="button"
+              onClick={() => setMoreOpen((prev) => !prev)}
+              aria-expanded={moreOpen}
+              aria-haspopup="menu"
+              className="
+                flex
+                items-center
+                gap-1.5
+                rounded-full
+                px-4
+                py-2
+                text-[12px]
+                font-medium
+                text-text-secondary
+                transition-all
+                duration-300
+                hover:bg-bg-surface
+                hover:text-text-primary
+              "
+            >
+              More
+              <ChevronDown
+                size={13}
+                strokeWidth={1.8}
+                className={`
+                  transition-transform
+                  duration-300
+                  ${moreOpen ? "rotate-180 text-accent" : ""}
+                `}
+              />
+            </button>
+
+            {moreOpen && (
+              <div
+                role="menu"
+                className="
+                  absolute
+                  right-0
+                  top-[calc(100%+0.75rem)]
+                  w-52
+                  overflow-hidden
+                  rounded-2xl
+                  border
+                  border-bg-border
+                  bg-bg-secondary/95
+                  p-2
+                  shadow-2xl
+                  shadow-black/30
+                  backdrop-blur-xl
+                "
+              >
+                <div className="px-3 py-2">
+                  <span
+                    className="
+                      text-[9px]
+                      font-semibold
+                      uppercase
+                      tracking-[0.2em]
+                      text-text-muted
+                    "
+                  >
+                    Explore
+                  </span>
+                </div>
+
+                {moreLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={handleNavClick}
+                    role="menuitem"
+                    className="
+                      flex
+                      items-center
+                      rounded-xl
+                      px-3
+                      py-2.5
+                      text-sm
+                      text-text-secondary
+                      transition-all
+                      duration-200
+                      hover:bg-bg-surface
+                      hover:text-text-primary
+                    "
+                  >
+                    {link.name}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
         </nav>
 
-        {/* CTA Button */}
-        <div className="hidden lg:flex items-center">
-          <Button href="#contact" variant="outline" className="py-2 text-xs">
-            Let's Talk
-          </Button>
+        <div
+          className="
+            hidden
+            items-center
+            gap-2
+            lg:flex
+          "
+        >
+          <span
+            className="
+              h-1.5
+              w-1.5
+              rounded-full
+              bg-accent
+              shadow-[0_0_10px_rgba(0,168,150,0.6)]
+            "
+          />
+
+          <span
+            className="
+              text-[9px]
+              font-semibold
+              uppercase
+              tracking-[0.18em]
+              text-text-muted
+            "
+          >
+            Open to opportunities
+          </span>
         </div>
 
-        {/* Mobile Menu Button */}
         <button
+          type="button"
           onClick={onOpenMobile}
-          className="lg:hidden p-2 text-text-secondary hover:text-text-primary focus:outline-none"
-          aria-label="Open Mobile Menu"
+          aria-label="Open navigation menu"
+          className="
+            flex
+            h-10
+            w-10
+            items-center
+            justify-center
+            rounded-xl
+            border
+            border-bg-border
+            bg-bg-surface/80
+            text-text-secondary
+            transition-all
+            duration-300
+            hover:border-accent/50
+            hover:text-text-primary
+            lg:hidden
+          "
         >
-          <Menu className="w-6 h-6" />
+          <Menu size={20} strokeWidth={1.7} />
         </button>
       </div>
     </header>

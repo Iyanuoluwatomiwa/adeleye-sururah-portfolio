@@ -23,10 +23,6 @@ export function Skills() {
       "
     >
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-        {/* ================================
-            HEADER
-        ================================= */}
-
         <div
           className="
             grid
@@ -106,10 +102,6 @@ export function Skills() {
             </p>
           </div>
         </div>
-
-        {/* ================================
-            SKILL MATRIX
-        ================================= */}
 
         <div className="mt-16 lg:mt-24">
           {skillCategories.map((category, index) => {
@@ -255,7 +247,6 @@ export function Skills() {
             );
           })}
 
-          {/* Bottom statement */}
           <div
             className="
               border-t border-bg-border

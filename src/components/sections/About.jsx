@@ -24,10 +24,6 @@ export function About() {
       "
     >
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-        {/* =================================
-            HEADER
-        ================================= */}
-
         <div
           className="
           grid
@@ -139,10 +135,6 @@ export function About() {
           </div>
         </div>
 
-        {/* =================================
-            STRENGTHS
-        ================================= */}
-
         <div
           className="
           mt-16
@@ -238,7 +230,6 @@ export function About() {
                   {strength.desc}
                 </p>
 
-                {/* Bottom indicator */}
                 <div
                   className="
                     mt-8

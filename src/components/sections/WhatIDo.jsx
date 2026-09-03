@@ -5,7 +5,6 @@ import {
   FileText,
   Monitor,
   MessageSquare,
-  ArrowUpRight,
 } from "lucide-react";
 
 import { profileData } from "../../assets/data";
@@ -33,17 +32,13 @@ export function WhatIDo() {
       "
     >
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-        {/* =====================================
-    SECTION HEADER
-====================================== */}
-
         <div
           className="
-    grid
-    gap-10
-    lg:grid-cols-[0.32fr_0.68fr]
-    lg:items-start
-  "
+          grid
+          gap-10
+          lg:grid-cols-[0.32fr_0.68fr]
+          lg:items-start
+        "
         >
           {/* Left */}
           <div>
@@ -52,12 +47,12 @@ export function WhatIDo() {
 
               <span
                 className="
-          text-[10px]
-          font-semibold
-          uppercase
-          tracking-[0.2em]
-          text-accent
-        "
+                text-[10px]
+                font-semibold
+                uppercase
+                tracking-[0.2em]
+                text-accent
+              "
               >
                 03 — What I Do
               </span>
@@ -65,16 +60,16 @@ export function WhatIDo() {
 
             <h2
               className="
-        mt-6
-        max-w-xs
-        font-heading
-        text-4xl
-        font-semibold
-        leading-[0.92]
-        tracking-[-0.045em]
-        text-text-primary
-        sm:text-5xl
-      "
+              mt-6
+              max-w-xs
+              font-heading
+              text-4xl
+              font-semibold
+              leading-[0.92]
+              tracking-[-0.045em]
+              text-text-primary
+              sm:text-5xl
+            "
             >
               Areas of
               <br />
@@ -86,28 +81,28 @@ export function WhatIDo() {
           <div className="max-w-3xl">
             <p
               className="
-        font-heading
-        text-2xl
-        font-medium
-        leading-[1.35]
-        tracking-tight
-        text-text-primary
-        sm:text-3xl
-        lg:text-[2.5rem]
-      "
+              font-heading
+              text-2xl
+              font-medium
+              leading-[1.35]
+              tracking-tight
+              text-text-primary
+              sm:text-3xl
+              lg:text-[2.5rem]
+            "
             >
               Combining human understanding with practical professional support.
             </p>
 
             <p
               className="
-        mt-7
-        max-w-2xl
-        text-sm
-        leading-7
-        text-text-secondary
-        sm:text-base
-      "
+              mt-7
+              max-w-2xl
+              text-sm
+              leading-7
+              text-text-secondary
+              sm:text-base
+            "
             >
               From guidance and student support to administration, virtual
               assistance and communication, my work is centered around helping
@@ -115,10 +110,6 @@ export function WhatIDo() {
             </p>
           </div>
         </div>
-
-        {/* =====================================
-            CAPABILITY GRID
-        ====================================== */}
 
         <div
           className="
@@ -153,7 +144,6 @@ export function WhatIDo() {
                   lg:p-8
                 "
               >
-                {/* Decorative number */}
                 <span
                   className="
                     absolute
@@ -222,7 +212,6 @@ export function WhatIDo() {
                   </p>
                 </div>
 
-                {/* Bottom interaction */}
                 <div
                   className="
                     absolute
@@ -245,27 +234,11 @@ export function WhatIDo() {
                       group-hover:bg-accent
                     "
                   />
-
-                  <ArrowUpRight
-                    size={16}
-                    className="
-                      text-text-muted
-                      transition-all
-                      duration-500
-                      group-hover:-translate-y-1
-                      group-hover:translate-x-1
-                      group-hover:text-accent
-                    "
-                  />
                 </div>
               </article>
             );
           })}
         </div>
-
-        {/* =====================================
-            BOTTOM STATEMENT
-        ====================================== */}
 
         <div
           className="
