@@ -47,11 +47,14 @@ export function FloatingWhatsApp() {
         sm:right-6
       "
     >
-      {/* WhatsApp mark */}
+      {/* REAL WHATSAPP MARK */}
       <svg
         viewBox="0 0 32 32"
         aria-hidden="true"
-        className="h-5 w-5 fill-current"
+        className="
+          h-5 w-5
+          fill-current
+        "
       >
         <path
           d="
@@ -100,7 +103,15 @@ export function FloatingWhatsApp() {
         />
       </svg>
 
-      <span className="hidden text-xs font-bold tracking-wide sm:inline">
+      <span
+        className="
+          hidden
+          text-xs
+          font-bold
+          tracking-wide
+          sm:inline
+        "
+      >
         Let's Talk
       </span>
 

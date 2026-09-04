@@ -1,33 +1,41 @@
-import { ArrowDown, ArrowUpRight, Download } from "lucide-react";
+import React from "react";
+import { ArrowDown, Download } from "lucide-react";
 
 import { profileData } from "../../assets/data";
+import cvFile from "../../assets/Adeleye_Sururah_CV.pdf";
+import { createWhatsAppLink } from "../../utils/whatsapp";
+import { ProfessionalVisual } from "./ProfessionalVisual";
 
 export function Hero() {
-  const { name, eyebrow, tagline, summary, cvPath } = profileData;
+  const { name, eyebrow, tagline, summary } = profileData;
+
+  const whatsappUrl = createWhatsAppLink(
+    profileData.contacts.whatsappNumber,
+    profileData.contacts.defaultWhatsappMessage,
+  );
 
   return (
     <section
       id="home"
       className="
-      relative isolate
-      min-h-svh
-      overflow-hidden
-      border-b border-bg-border
-      bg-bg-main
-      pt-20
-      lg:pt-24
-    "
+        relative isolate min-h-svh
+        overflow-hidden
+        border-b border-bg-border
+        bg-bg-main
+        pt-22
+        sm:pt-24
+        lg:pt-26
+      "
     >
       <div
         aria-hidden="true"
         className="
           pointer-events-none absolute
-          left-[55%] top-[35%]
-          h-130 w-130
-          -translate-x-1/2 -translate-y-1/2
+          -left-40 top-1/4
+          h-96 w-96
           rounded-full
-          bg-accent/4.5
-          blur-[110px]
+          bg-accent/5
+          blur-[120px]
         "
       />
 
@@ -35,62 +43,96 @@ export function Hero() {
         aria-hidden="true"
         className="
           pointer-events-none absolute
-          -right-40 top-20
-          h-80 w-80
+          -right-40 top-[15%]
+          h-150 w-150
           rounded-full
-          bg-accent/2.5
-          blur-[90px]
+          bg-accent/4
+          blur-[130px]
         "
       />
 
-      {/* Architectural grid */}
       <div
         aria-hidden="true"
         className="
           pointer-events-none absolute inset-0
-          opacity-[0.035]
-          bg-[linear-gradient(to_right,#F5F5F5_1px,transparent_1px),linear-gradient(to_bottom,#F5F5F5_1px,transparent_1px)]
+          opacity-[0.025]
+          bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)]
           bg-size-[72px_72px]
         "
       />
 
       <div
         className="
-        relative mx-auto flex
-        min-h-[calc(100svh-5rem)]
-        max-w-7xl items-center
-        px-6 py-10
-        sm:py-14
-        lg:min-h-[calc(100svh-6rem)]
-        lg:px-8
-        lg:py-8"
+          relative mx-auto
+          flex min-h-[calc(100svh-4rem)]
+          max-w-7xl
+          items-center
+          px-5 py-8
+          sm:px-6 sm:py-10
+          lg:min-h-[calc(100svh-5rem)]
+          lg:px-8
+          lg:py-0
+        "
       >
         <div
+          aria-hidden="true"
           className="
-            grid w-full
-            items-center
-            gap-16
-            lg:grid-cols-[1.05fr_0.95fr]
-            lg:gap-8
+            pointer-events-none
+            absolute
+            -right-56
+            top-1/2
+            h-105 w-105
+            -translate-y-1/2
+            opacity-35
+            sm:-right-48
+            sm:h-125 sm:w-125
+            sm:opacity-40
+            md:-right-36
+            md:h-140 md:w-140
+            md:opacity-45
+            lg:hidden
           "
         >
-          <div className="relative z-10">
+          <ProfessionalVisual />
+        </div>
+
+        <div
+          className="
+            relative z-10
+            grid w-full
+            items-center
+            lg:grid-cols-[1fr_0.9fr]
+            lg:gap-2
+            xl:grid-cols-[1.02fr_0.98fr]
+            xl:gap-6
+          "
+        >
+          <div
+            className="
+              relative
+              max-w-3xl
+              lg:-translate-y-5
+              xl:-translate-y-4
+            "
+          >
             {/* Eyebrow */}
             <div
               className="
                 animate-fade-up
+                mb-5
                 flex items-center gap-3
+                sm:mb-6
               "
-              style={{ animationDelay: "100ms" }}
             >
-              <span className="h-px w-9 bg-accent" />
+              <span aria-hidden="true" className="h-px w-7 bg-accent sm:w-9" />
 
               <span
                 className="
-                  text-[10px]
+                  font-heading
+                  text-[0.62rem]
                   font-semibold
                   uppercase
-                  tracking-[0.22em]
+                  tracking-[0.2em]
                   text-accent
                   sm:text-xs
                 "
@@ -103,138 +145,258 @@ export function Hero() {
             <h1
               className="
                 animate-fade-up
-                mt-7
                 max-w-4xl
                 font-heading
-                text-[clamp(3.4rem,8vw,7.7rem)]
+                text-[clamp(3rem,8vw,6.25rem)]
                 font-semibold
-                leading-[0.84]
+                leading-[0.86]
                 tracking-[-0.065em]
+                text-text-primary
+                [animation-delay:100ms]
+                sm:text-[clamp(3.5rem,8vw,6.5rem)]
+                lg:text-[clamp(4.25rem,6vw,6.4rem)]
               "
-              style={{ animationDelay: "200ms" }}
             >
-              <span className="block text-text-primary">Adeleye</span>
-
-              <span className="block text-text-secondary">Sururah</span>
-
-              <span className="block text-text-primary">
-                Aderibigbe
-                <span className="text-accent">.</span>
-              </span>
+              {name.split(" ").map((word, index) => (
+                <React.Fragment key={`${word}-${index}`}>
+                  {index === 0 ? (
+                    word
+                  ) : (
+                    <>
+                      {" "}
+                      <span
+                        className={
+                          index === name.split(" ").length - 1
+                            ? "text-accent"
+                            : ""
+                        }
+                      >
+                        {word}
+                      </span>
+                    </>
+                  )}
+                </React.Fragment>
+              ))}
             </h1>
 
-            {/* Professional statement */}
+            {/* Tagline */}
+            <p
+              className="
+                animate-fade-up
+                mt-6
+                max-w-xl
+                font-heading
+                text-lg
+                font-medium
+                leading-snug
+                text-text-secondary
+                [animation-delay:200ms]
+                sm:mt-7
+                sm:text-xl
+                lg:mt-6
+                lg:text-2xl
+              "
+            >
+              {tagline}
+            </p>
+
+            {/* Summary */}
+            <p
+              className="
+                animate-fade-up
+                mt-4
+                max-w-2xl
+                text-sm
+                leading-7
+                text-text-muted
+                [animation-delay:300ms]
+                sm:mt-5
+                sm:text-[0.95rem]
+                lg:max-w-xl
+                lg:text-sm
+                lg:leading-6
+              "
+            >
+              {summary}
+            </p>
+
             <div
               className="
                 animate-fade-up
-                mt-8 max-w-2xl
+                mt-6
+                flex flex-wrap items-center gap-3
+                [animation-delay:400ms]
+                sm:mt-7
               "
-              style={{ animationDelay: "350ms" }}
             >
-              <h2
+              {/* Download CV */}
+              <a
+                href={cvFile}
+                download="Adeleye-Sururah-Aderibigbe-CV.pdf"
                 className="
+                  group
+                  inline-flex
+                  items-center
+                  justify-center
+                  gap-2.5
+                  rounded-full
+                  border border-accent
+                  bg-accent
+                  px-5
+                  py-3
                   font-heading
-                  text-xl
-                  font-medium
-                  leading-tight
-                  text-text-primary
-                  sm:text-2xl
-                  lg:text-[1.7rem]
+                  text-xs
+                  font-semibold
+                  tracking-wide
+                  text-bg-main
+                  shadow-[0_10px_30px_rgba(0,168,150,0.12)]
+                  transition-all
+                  duration-300
+                  hover:-translate-y-0.5
+                  hover:bg-accent-hover
+                  hover:shadow-[0_14px_35px_rgba(0,168,150,0.18)]
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-accent
+                  focus-visible:ring-offset-2
+                  focus-visible:ring-offset-bg-main
+                  sm:px-5.5
                 "
               >
-                {tagline}
-              </h2>
-
-              <p
-                className="
-                mt-4
-                max-w-xl
-                text-sm
-                leading-6
-                text-text-secondary
-                sm:mt-5
-                sm:text-base
-                sm:leading-7
-              "
-              >
-                A Counsellor Education graduate with experience across student
-                support, teaching, administrative coordination and
-                people-centered professional support.
-              </p>
-            </div>
-
-            {/* CTAs */}
-            <div
-              className="
-                animate-fade-up
-                mt-7
-                sm:mt-8
-                flex flex-wrap
-                gap-3
-              "
-              style={{ animationDelay: "500ms" }}
-            >
-              <a
-                href={cvPath}
-                download
-                className="
-                group
-                inline-flex
-                items-center
-                gap-3
-                rounded-full
-                bg-accent
-                px-6
-                py-3.5
-                text-sm
-                font-semibold
-                text-bg-main
-                shadow-[0_10px_35px_rgba(0,168,150,0.12)]
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                hover:bg-accent-hover
-                hover:shadow-[0_14px_45px_rgba(0,168,150,0.22)]
-              "
-              >
-                <Download size={17} strokeWidth={2} />
-                Download CV
-              </a>
-
-              <a
-                href="#about"
-                className="
-                group
-                inline-flex
-                items-center
-                gap-3
-                rounded-full
-                border border-bg-border
-                bg-bg-surface
-                px-6
-                py-3.5
-                text-sm
-                font-semibold
-                text-text-primary
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                hover:border-accent/50
-                hover:bg-bg-secondary
-              "
-              >
-                Discover More
-                <ArrowUpRight
-                  size={16}
+                <Download
+                  size={17}
+                  strokeWidth={2}
                   className="
                     transition-transform
                     duration-300
                     group-hover:-translate-y-0.5
-                    group-hover:translate-x-0.5
-                    group-hover:text-accent
                   "
                 />
+                Download CV
               </a>
+
+              {/* WhatsApp */}
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Let's Talk on WhatsApp"
+                className="
+                  group
+                  inline-flex
+                  items-center
+                  justify-center
+                  gap-2.5
+                  rounded-full
+                  border border-bg-border
+                  bg-bg-surface/80
+                  px-5
+                  py-3
+                  font-heading
+                  text-xs
+                  font-semibold
+                  tracking-wide
+                  text-text-primary
+                  backdrop-blur-sm
+                  transition-all
+                  duration-300
+                  hover:-translate-y-0.5
+                  hover:border-accent/50
+                  hover:bg-bg-surface
+                  hover:shadow-[0_12px_30px_rgba(0,0,0,0.2)]
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-accent
+                  focus-visible:ring-offset-2
+                  focus-visible:ring-offset-bg-main
+                  sm:px-5.5
+                "
+              >
+                {/* REAL WHATSAPP MARK */}
+                <svg
+                  viewBox="0 0 32 32"
+                  aria-hidden="true"
+                  className="
+                    h-5 w-5
+                    fill-current
+                    text-accent
+                    transition-transform
+                    duration-300
+                    group-hover:scale-110
+                  "
+                >
+                  <path
+                    d="
+                      M19.11 17.19
+                      c-.27-.14-1.58-.78-1.83-.87
+                      -.25-.09-.43-.14-.61.14
+                      -.18.27-.7.87-.86 1.05
+                      -.16.18-.32.2-.59.07
+                      -.27-.14-1.13-.42-2.15-1.34
+                      -.79-.7-1.33-1.56-1.49-1.83
+                      -.16-.27-.02-.42.12-.56
+                      .12-.12.27-.32.41-.48
+                      .14-.16.18-.27.27-.45
+                      .09-.18.05-.34-.02-.48
+                      -.07-.14-.61-1.47-.84-2.01
+                      -.22-.53-.45-.46-.61-.47
+                      -.16-.01-.34-.01-.52-.01
+                      -.18 0-.48.07-.73.34
+                      -.25.27-.96.94-.96 2.3
+                      0 1.36.98 2.67 1.11 2.85
+                      .14.18 1.93 2.95 4.68 4.14
+                      .65.28 1.16.45 1.56.58
+                      .66.21 1.26.18 1.74.11
+                      .53-.08 1.58-.65 1.8-1.28
+                      .22-.63.22-1.17.16-1.28
+                      -.07-.11-.25-.18-.52-.32
+                      z
+
+                      M16.01 3
+                      C8.83 3 3 8.83 3 16
+                      c0 2.29.6 4.53 1.74 6.49
+                      L3 29l6.67-1.7A12.94 12.94 0 0 0 16 29
+                      c7.17 0 13-5.83 13-13S23.18 3 16.01 3
+                      z
+
+                      M16.01 26.86
+                      c-2.01 0-3.98-.54-5.71-1.56
+                      l-.41-.24-3.96 1.01 1.06-3.86
+                      -.27-.42A10.84 10.84 0 0 1 5.14 16
+                      c0-5.99 4.87-10.86 10.87-10.86
+                      2.9 0 5.62 1.13 7.67 3.19
+                      A10.77 10.77 0 0 1 26.86 16
+                      c0 5.99-4.87 10.86-10.85 10.86
+                      z
+                    "
+                  />
+                </svg>
+                Let's Talk on WhatsApp
+              </a>
+            </div>
+
+            <div
+              aria-hidden="true"
+              className="
+                mt-7
+                flex items-center gap-3
+                lg:hidden
+              "
+            >
+              <span className="h-px w-8 bg-accent/50" />
+
+              <span
+                className="
+                  font-heading
+                  text-[0.58rem]
+                  font-semibold
+                  uppercase
+                  tracking-[0.18em]
+                  text-text-muted
+                "
+              >
+                People • Education • Support • Coordination
+              </span>
             </div>
 
             {/* Scroll cue */}
@@ -242,271 +404,112 @@ export function Hero() {
               href="#about"
               className="
                 animate-fade-up
-                mt-9 
-                sm:mt-12
+                mt-8
                 inline-flex
                 items-center
                 gap-3
-                text-[10px]
+                text-[0.65rem]
                 font-semibold
                 uppercase
-                tracking-[0.2em]
+                tracking-[0.18em]
                 text-text-muted
                 transition-colors
                 duration-300
-                hover:text-accent
+                hover:text-text-primary
+                [animation-delay:500ms]
+                sm:mt-10
+                lg:mt-8
               "
-              style={{ animationDelay: "650ms" }}
             >
               Scroll to explore
-              <ArrowDown size={14} />
+              <span
+                className="
+                  flex h-8 w-8
+                  items-center justify-center
+                  rounded-full
+                  border border-bg-border
+                  transition-all
+                  duration-300
+                  group-hover:border-accent
+                "
+              >
+                <ArrowDown
+                  size={14}
+                  strokeWidth={1.7}
+                  className="animate-bounce"
+                />
+              </span>
             </a>
           </div>
 
-          {/* =================================
-              RIGHT — VISUAL IDENTITY
-          ================================= */}
-
           <div
+            aria-hidden="true"
             className="
               relative
-              mx-auto
               hidden
-              h-115
+              h-105
               w-full
               max-w-125
-              xl:h-130
-              xl:max-w-130
+              justify-self-end
               lg:block
+              lg:-translate-y-5
+              xl:h-120
+              xl:max-w-130
+              2xl:h-135
             "
           >
-            {/* Large orbital circle */}
-            <div
-              className="
-                absolute
-                left-1/2 top-1/2
-                h-90 w-90
-                xl:h-102.5 xl:w-102.5
-                -translate-x-1/2
-                -translate-y-1/2
-                rounded-full
-                border border-bg-border/80
-              "
-            />
-
-            <div
-              className="
-                absolute
-                left-1/2 top-1/2
-                h-73.75 w-73.75
-                xl:h-85 xl:w-85
-                -translate-x-1/2
-                -translate-y-1/2
-                rounded-full
-                border border-dashed
-                border-accent/20
-                animate-[spin_30s_linear_infinite]
-              "
-            />
-
-            {/* Central visual */}
-            <div
-              className="
-                animate-float
-                absolute
-                left-1/2 top-1/2
-                flex
-                h-56.25 w-56.25
-                xl:h-67.5 xl:w-67.5
-                -translate-x-1/2
-                -translate-y-1/2
-                items-center
-                justify-center
-                rounded-full
-                border border-bg-border
-                bg-bg-secondary
-                shadow-2xl
-                shadow-black/30
-              "
-            >
-              {/* Inner glow */}
-              <div
-                className="
-                  absolute
-                  h-52 w-52
-                  rounded-full
-                  bg-accent/[0.035]
-                  blur-3xl
-                "
-              />
-
-              {/* Monogram */}
-              <div className="relative">
-                <span
-                  className="
-                    font-heading
-                    text-[8rem]
-                    font-semibold
-                    leading-none
-                    tracking-[-0.12em]
-                    text-text-primary/8
-                  "
-                >
-                  ASA
-                </span>
-
-                <span
-                  className="
-                    absolute
-                    -right-2
-                    top-3
-                    h-16
-                    w-16
-                    rounded-full
-                    border
-                    border-accent/60
-                  "
-                />
-
-                {/* Star */}
-                <span
-                  className="
-                    absolute
-                    right-1
-                    top-0
-                    h-2
-                    w-2
-                    rounded-full
-                    bg-accent
-                    shadow-[0_0_18px_rgba(0,168,150,0.7)]
-                  "
-                />
-              </div>
-            </div>
-
-            <div
-              className="
-                absolute
-                right-0
-                top-12
-                flex
-                items-center
-                gap-3
-                border
-                border-bg-border
-                bg-bg-secondary/80
-                px-4 py-3
-                backdrop-blur-xl
-              "
-            >
-              <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
-
-              <div>
-                <p
-                  className="
-                    text-[9px]
-                    font-semibold
-                    uppercase
-                    tracking-[0.18em]
-                    text-text-muted
-                  "
-                >
-                  Current Focus
-                </p>
-
-                <p className="mt-1 font-heading text-xs text-text-primary">
-                  People • Support • Growth
-                </p>
-              </div>
-            </div>
-
-            <div
-              className="
-                absolute
-                bottom-10
-                left-0
-                w-60
-                border
-                border-bg-border
-                bg-bg-main/90
-                p-5
-                backdrop-blur-xl
-              "
-            >
-              <p
-                className="
-                  text-[9px]
-                  font-semibold
-                  uppercase
-                  tracking-[0.2em]
-                  text-accent
-                "
-              >
-                Professional Identity
-              </p>
-
-              <p
-                className="
-                  mt-3
-                  font-heading
-                  text-lg
-                  font-medium
-                  leading-snug
-                  text-text-primary
-                "
-              >
-                Guidance, empathy and purposeful support.
-              </p>
-            </div>
-
-            
-            <div className="absolute bottom-4 right-5">
-              <p className="font-heading text-[10px] tracking-[0.2em] text-text-muted">
-                09° 05′ N
-              </p>
-
-              <p className="mt-1 font-heading text-[10px] tracking-[0.2em] text-text-muted">
-                07° 29′ E
-              </p>
-            </div>
-
-            {/* Orbit dot */}
-            <span
-              className="
-                absolute
-                left-17.5
-                top-27.5
-                h-2
-                w-2
-                rounded-full
-                bg-accent
-                shadow-[0_0_20px_rgba(0,168,150,0.5)]
-              "
-            />
+            <ProfessionalVisual />
           </div>
         </div>
       </div>
 
-      
       <div
+        aria-hidden="true"
         className="
+          pointer-events-none
           absolute
           bottom-5
-          left-6
-          right-6
+          left-5
           hidden
           items-center
-          justify-between
+          gap-3
+          text-[0.58rem]
+          font-semibold
+          uppercase
+          tracking-[0.2em]
+          text-text-muted
+          sm:left-6
           lg:flex
+          lg:left-8
         "
       >
-        <span className="text-[9px] uppercase tracking-[0.2em] text-text-muted">
-          Oyo State • Nigeria
-        </span>
+        <span className="h-px w-8 bg-bg-border" />
+        Oyo State, Nigeria
+      </div>
 
-        <span className="font-heading text-[10px] text-text-muted">
-          01 / 09
-        </span>
+      <div
+        aria-hidden="true"
+        className="
+          pointer-events-none
+          absolute
+          bottom-5
+          right-5
+          hidden
+          items-center
+          gap-3
+          text-[0.58rem]
+          font-semibold
+          uppercase
+          tracking-[0.2em]
+          text-text-muted
+          sm:right-6
+          lg:flex
+          lg:right-8
+        "
+      >
+        <span className="text-accent">01</span>
+        <span>/</span>
+        <span>08</span>
       </div>
     </section>
   );
