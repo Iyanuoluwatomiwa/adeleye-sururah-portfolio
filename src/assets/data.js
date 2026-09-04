@@ -16,7 +16,7 @@ export const profileData = {
   },
 
   summary:
-    "A dedicated and motivated recent graduate of Counsellor Education (Guidance & Counselling) with hands-on experience in teaching, student support, and administrative coordination. Brings strong communication, teamwork, and organizational skills, with a proven ability to adapt and contribute effectively in professional environments.",
+    "A dedicated and motivated graduate of Counsellor Education (Guidance & Counselling) with hands-on experience in teaching, student support, and administrative coordination. Brings strong communication, teamwork, and organizational skills, with a proven ability to adapt and contribute effectively in professional environments.",
 
   strengths: [
     {
